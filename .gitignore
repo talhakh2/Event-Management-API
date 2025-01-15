@@ -1,0 +1,47 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Environment variables
+.env
+
+# Directory for local modules
+node_modules/
+
+# Debug output
+.DS_Store
+.vscode/
+
+# Dependency directories
+/.pnp
+.pnp.js
+
+# Optional npm cache directory
+.npm
+
+# Build outputs
+dist/
+build/
+
+# Testing
+/coverage
+
+# IDE-specific files
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.vcxproj
+*.swp
+
+# Docker
+docker-compose.override.yml
