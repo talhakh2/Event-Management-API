@@ -48,15 +48,17 @@ npm install
 
 ### **4. Configure Environment Variables**
 Create a `.env` file in the project root and add the following environment variables:
-create .env file
+
+```bash
 PORT=5000
 DATABASE_URL=<your-database-url>
 JWT_SECRET=<your-secret-key>
 EMAIL_USER=<your-email>
-EMAIL_PASS=<your-email-app-password>
+EMAIL_PASS=<your-email-app-password>`
 ```
 
 ### **5. Run the Server**
+
 ```bash
 npm run dev
 ```
