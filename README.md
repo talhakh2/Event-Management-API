@@ -79,21 +79,3 @@ The server will run on `http://localhost:5000`.
    ```
 
 ---
-
-## **Project Structure**
-
-```
-.
-├── src
-│   ├── controllers    # API Controllers
-│   ├── models         # Database Models
-│   ├── routes         # API Routes
-│   ├── middleware     # Middleware (e.g., authentication)
-│   ├── utils          # Utility functions
-├── tests              # Automated tests
-├── package.json       # Dependencies and scripts
-├── .env               # Environment variables
-└── README.md          # Documentation
-```
-
----
