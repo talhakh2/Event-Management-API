@@ -2,12 +2,32 @@ const User = require("../models/User");
 const Event = require("../models/Event");
 const asyncHandler = require("express-async-handler");
 
-// @desc    Get all users (Admin only)
-// @route   GET /api/admin/users
-// @access  Admin
+// // @desc    Get all users - both organizers and users
+// // @route   GET /api/admin/users
+// // @access  Admin
 exports.getAllUsers = asyncHandler(async (req, res) => {
-  const users = await User.find({ isDeleted: false }).select("-password");
-  res.json(users);
+  const page = parseInt(req.query.page, 10) || 1; // Default to page 1
+  const limit = parseInt(req.query.limit, 10) || 5; // Default to 10 users per page
+  const skip = (page - 1) * limit;
+
+  // Fetch users with pagination
+  const users = await User.find({ isDeleted: false })
+    .select("-password")
+    .skip(skip)
+    .limit(limit);
+
+  // Get the total number of users for pagination info
+  const totalUsers = await User.countDocuments({ isDeleted: false });
+
+  res.json({
+    users,
+    pagination: {
+      totalUsers,
+      currentPage: page,
+      totalPages: Math.ceil(totalUsers / limit),
+      pageSize: limit,
+    },
+  });
 });
 
 
