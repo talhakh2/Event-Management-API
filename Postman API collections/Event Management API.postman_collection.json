@@ -1,0 +1,635 @@
+{
+	"info": {
+		"_postman_id": "60586edd-52c1-4ba4-84c1-29da2acef345",
+		"name": "Event Management API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "37880571"
+	},
+	"item": [
+		{
+			"name": "User Management",
+			"item": [
+				{
+					"name": "register user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "  {\r\n    \"name\": \"Khawaja Talha Farooq\",\r\n    \"email\": \"talha.kh60@gmail.com\",\r\n    \"password\": \"12345678\"\r\n  }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}/api/auth/register",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "  {\r\n    \"email\": \"admin@admin.com\",\r\n    \"password\": \"admin\"\r\n  }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}/api/auth/login",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Fetch User Profile",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3OGMwMjRmNGU4MmEwYTYyZTY0YTNmYyIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzM3MjI4OTMxLCJleHAiOjE3Mzc4MzM3MzF9.1-0bp3Yq8fE1jF5jklvfaZeYWjYMAPhe2dUmVAzY3fs",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{server}}/api/users/:id",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"api",
+								"users",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update User Profile",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3OGMwMjRmNGU4MmEwYTYyZTY0YTNmYyIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzM3MjI4OTMxLCJleHAiOjE3Mzc4MzM3MzF9.1-0bp3Yq8fE1jF5jklvfaZeYWjYMAPhe2dUmVAzY3fs",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "  {\r\n    \"name\": \"Talha Khawaja\",\r\n    \"email\": \"talha.kh58@gmail.com\"\r\n  }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}/api/users/:id",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"api",
+								"users",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Event Management",
+			"item": [
+				{
+					"name": "Create New Event",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3OGMxMWNmOTc2YTMzOWI4ODY4M2Q0ZCIsInJvbGUiOiJvcmdhbml6ZXIiLCJpYXQiOjE3MzcyMzI4ODQsImV4cCI6MTczNzgzNzY4NH0.5AC3Ev6MdNRfT6fTPFyB1ccLz40zrgjpxRActZugKqU",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Tech Conference\",\r\n  \"description\": \"A conference about technology\",\r\n  \"date\": \"2023-12-01T10:00:00Z\",\r\n  \"location\": \"Los Angeles\",\r\n  \"capacity\": 2\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}/api/events",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"api",
+								"events"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Events List",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{server}}/api/events",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"api",
+								"events"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Single Event",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{server}}/api/events/:id",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"api",
+								"events",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "678c120677414e11e07e676b"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Event",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3OGMxMWNmOTc2YTMzOWI4ODY4M2Q0ZCIsInJvbGUiOiJvcmdhbml6ZXIiLCJpYXQiOjE3MzcyODAwMDEsImV4cCI6MTczNzg4NDgwMX0.rxAOMNdaefqtLIRCj0L91CjKVu9i2Pk0CyLf3djYofc",
+								"type": "text"
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Updated Tech Conference\",\r\n  \"capacity\": 3\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}/api/events/:id",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"api",
+								"events",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Event",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3OGMxMWNmOTc2YTMzOWI4ODY4M2Q0ZCIsInJvbGUiOiJvcmdhbml6ZXIiLCJpYXQiOjE3MzcyODAwMDEsImV4cCI6MTczNzg4NDgwMX0.rxAOMNdaefqtLIRCj0L91CjKVu9i2Pk0CyLf3djYofc",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{server}}/api/events/:id",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"api",
+								"events",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Event Registration",
+			"item": [
+				{
+					"name": "Register for Event",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3OGMwMjRmNGU4MmEwYTYyZTY0YTNmYyIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzM3MjgwNTc4LCJleHAiOjE3Mzc4ODUzNzh9.a50UTwAdEOPMraY1yhFj5kWWbM-TYNQL4VXPXF1lZTM",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{server}}/api/registrations/:id/register",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"api",
+								"registrations",
+								":id",
+								"register"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "678ccb24b6f14fb3fe6186a4"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cancel Registration",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3OGMwMjRmNGU4MmEwYTYyZTY0YTNmYyIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzM3MjgwNTc4LCJleHAiOjE3Mzc4ODUzNzh9.a50UTwAdEOPMraY1yhFj5kWWbM-TYNQL4VXPXF1lZTM",
+								"type": "text"
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{server}}/api/registrations/:id/register",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"api",
+								"registrations",
+								":id",
+								"register"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "678ccb24b6f14fb3fe6186a4"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Attendees",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3OGMxMWNmOTc2YTMzOWI4ODY4M2Q0ZCIsInJvbGUiOiJvcmdhbml6ZXIiLCJpYXQiOjE3MzcyODEzNzYsImV4cCI6MTczNzg4NjE3Nn0.k98R0-q8XCcjj9LOMMdwqyrkxW4CgUu3JMt3O3sV0mk",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{server}}/api/registrations/:id/attendees",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"api",
+								"registrations",
+								":id",
+								"attendees"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "678ccb24b6f14fb3fe6186a4"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Admin",
+			"item": [
+				{
+					"name": "Get All Users",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3OGNkNmMzMjkzY2EzNGFjMzA4ZDZlMSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzM3MjgzNDQwLCJleHAiOjE3Mzc4ODgyNDB9.RVWsdsdBI5sErcXG239pSb0ok_35bAx7bl-xb1BtU4I",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{server}}/api/admin/users?page=1&limit=5",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"api",
+								"admin",
+								"users"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "limit",
+									"value": "5"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Events",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3OGNkNmMzMjkzY2EzNGFjMzA4ZDZlMSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzM3MjgzNDQwLCJleHAiOjE3Mzc4ODgyNDB9.RVWsdsdBI5sErcXG239pSb0ok_35bAx7bl-xb1BtU4I",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{server}}/api/admin/events",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"api",
+								"admin",
+								"events"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Soft Delete User",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3OGNkNmMzMjkzY2EzNGFjMzA4ZDZlMSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzM3MjgzNDQwLCJleHAiOjE3Mzc4ODgyNDB9.RVWsdsdBI5sErcXG239pSb0ok_35bAx7bl-xb1BtU4I",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{server}}/api/admin/users/:id",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"api",
+								"admin",
+								"users",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "678c024f4e82a0a62e64a3fc"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Analytics",
+			"item": [
+				{
+					"name": "Popular Events",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3OGNkNmMzMjkzY2EzNGFjMzA4ZDZlMSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzM3MjgzNDQwLCJleHAiOjE3Mzc4ODgyNDB9.RVWsdsdBI5sErcXG239pSb0ok_35bAx7bl-xb1BtU4I",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{server}}/api/analytics/events/popular",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"api",
+								"analytics",
+								"events",
+								"popular"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Active Users",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3OGNkNmMzMjkzY2EzNGFjMzA4ZDZlMSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzM3MjgzNDQwLCJleHAiOjE3Mzc4ODgyNDB9.RVWsdsdBI5sErcXG239pSb0ok_35bAx7bl-xb1BtU4I",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{server}}/api/analytics/users/active",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"api",
+								"analytics",
+								"users",
+								"active"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Event Stats",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3OGNkNmMzMjkzY2EzNGFjMzA4ZDZlMSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzM3MjgzNDQwLCJleHAiOjE3Mzc4ODgyNDB9.RVWsdsdBI5sErcXG239pSb0ok_35bAx7bl-xb1BtU4I",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{server}}/api/analytics/events/:id/stats",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"api",
+								"analytics",
+								"events",
+								":id",
+								"stats"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "678ccb24b6f14fb3fe6186a4"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Notification",
+			"item": [
+				{
+					"name": "Send Notification",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3OGNkNmMzMjkzY2EzNGFjMzA4ZDZlMSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzM3MjgzNDQwLCJleHAiOjE3Mzc4ODgyNDB9.RVWsdsdBI5sErcXG239pSb0ok_35bAx7bl-xb1BtU4I",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"event_id\": \"678ccb24b6f14fb3fe6186a4\",\r\n\"message\": \"Hello, Thanks for registring for this event!\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}/api/notifications/send",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"api",
+								"notifications",
+								"send"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

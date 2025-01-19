@@ -1,41 +1,99 @@
-# Event Management API
+# **API Documentation**
+https://documenter.getpostman.com/view/37880571/2sAYQanC5C#707f2642-276e-4868-b838-1d73eb20d481
 
-## Overview
-This project is a **Comprehensive Event Management API** built using **Node.js**, **Express.js**, and **MongoDB**. It includes features such as user authentication, event creation, registration, attendance tracking, analytics, and admin tools.
 
----
+# **Event Management System**
 
-## Features
-- **User Authentication & Management**
-  - User registration, login, and role-based access control (Admin, Organizer, User).
-- **Event Management**
-  - Event creation, updating, and deletion.
-  - Attendee registration and cancellation.
-- **Analytics**
-  - Top 5 most registered events.
-  - Top 5 most active users.
-- **Notifications**
-  - Send notifications to attendees via email.
-- **Admin Tools**
-  - Retrieve and manage users and events.
+The Event Management System is a RESTful API that allows users to manage events, register for events, and perform analytics. This project supports role-based access control for users, event organizers, and administrators.
 
 ---
 
-## Tech Stack
-- **Backend**: Node.js, Express.js
-- **Database**: MongoDB (via Mongoose)
+## **Features**
+
+- **Authentication**: User registration and login using JWT-based authentication.
+- **User Management**: Role-based operations for users and administrators.
+- **Event Management**: Create, update, delete, and view events.
+- **Event Registration**: Register for events and cancel registrations.
+- **Admin**: Get all events, Users, and  delete a user (soft delete).
+- **Analytics**: View popular events, most active users and event statistics (admin only).
+- **Notifications**: Notify attendees about event updates (organizers, and admin).
+
+---
+
+## **Technologies Used**
+
+- **Backend**: Node.js/Express
+- **Database**: MongoDB
 - **Authentication**: JWT (JSON Web Tokens)
-- **Testing**: Jest, Supertest
+
 ---
 
-## Installation & Setup
+## **Setup Instructions**
 
-### 1. Prerequisites
-- [Node.js](https://nodejs.org/) (v18 or later)
-- [MongoDB](https://www.mongodb.com/)
-- [Docker](https://www.docker.com/) (Optional, for containerized deployment)
+### **1. Prerequisites**
+- Node.js installed
+- MongoDB installed
+- Postman (optional, for API testing)
 
-### 2. Clone Repository
+### **2. Clone the Repository**
 ```bash
-git clone https://github.com/yourusername/event-management-api.git
-cd event-management-api
+git clone https://github.com/your-username/event-management-system.git
+cd event-management-system
+```
+
+### **3. Install Dependencies**
+```bash
+npm install
+```
+
+### **4. Configure Environment Variables**
+Create a `.env` file in the project root and add the following environment variables:
+create .env file
+PORT=5000
+DATABASE_URL=<your-database-url>
+JWT_SECRET=<your-secret-key>
+EMAIL_USER=<your-email>
+EMAIL_PASS=<your-email-app-password>
+```
+
+### **5. Run the Server**
+```bash
+npm run dev
+```
+The server will run on `http://localhost:5000`.
+
+---
+
+## **Testing the API**
+
+1. **Using Postman**:
+   - Import the endpoints into Postman. from the folder (Postman API collections)
+   - Use the provided `JWT_ACCESS_TOKEN` for endpoints that require authentication.
+   
+2. **Using Curl**:
+   Example for registering a user:
+   ```bash
+   curl -X POST http://localhost:5000/api/auth/register \
+   -H "Content-Type: application/json" \
+   -d '{"name":"new user","email":"newuser@gmail.com","password":"12345678"}'
+   ```
+
+---
+
+## **Project Structure**
+
+```
+.
+├── src
+│   ├── controllers    # API Controllers
+│   ├── models         # Database Models
+│   ├── routes         # API Routes
+│   ├── middleware     # Middleware (e.g., authentication)
+│   ├── utils          # Utility functions
+├── tests              # Automated tests
+├── package.json       # Dependencies and scripts
+├── .env               # Environment variables
+└── README.md          # Documentation
+```
+
+---
