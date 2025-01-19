@@ -1,19 +1,31 @@
-const jwt = require('jsonwebtoken');
-const User = require('../model/user');
-require('dotenv').config();
+const jwt = require("jsonwebtoken");
+const User = require("../models/User");
 
-const authMiddleware = async (req, res, next) => {
-  const token = req.header('Authorization');
-  if (!token) return res.status(401).json({ message: 'Access Denied' });
-
-  try {
-    const verified = jwt.verify(token, process.env.JWT_SECRET);
-    req.user = await User.findById(verified.id).select('-password');
-    next();
-  } catch (err) {
-    res.status(400).json({ message: 'Invalid Token' });
+const protect = async (req, res, next) => {
+  let token;
+  if (req.headers.authorization && req.headers.authorization.startsWith("Bearer")) {
+    try {
+      // Extract token and verify
+      token = req.headers.authorization.split(" ")[1];
+      const decoded = jwt.verify(token, process.env.JWT_SECRET);
+      req.user = await User.findById(decoded.id).select("-password");
+      next();
+    } catch (error) {
+      res.status(401).json({ message: "Not authorized, token failed" });
+    }
+  } else {
+    res.status(401).json({ message: "No token provided" });
   }
 };
 
+// Role-based authorization
+const authorize = (...roles) => {
+  return (req, res, next) => {
+    if (!roles.includes(req.user.role)) {
+      return res.status(403).json({ message: "Not authorized for this action" });
+    }
+    next();
+  };
+};
 
-module.exports = authMiddleware;
+module.exports = { protect, authorize };

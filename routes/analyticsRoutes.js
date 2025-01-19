@@ -1,25 +1,20 @@
-const express = require('express');
+const express = require("express");
+const { protect, authorize } = require("../middleware/authMiddleware.js");
 const {
   getPopularEvents,
   getActiveUsers,
-} = require('../controller/analyticsController');
-const authMiddleware = require('../middleware/authMiddleware');
-const adminMiddleware = require('../middleware/adminMiddleware');
+  getEventStats,
+} = require("../controllers/analyticsController");
 
 const router = express.Router();
 
-/**
- * @route   GET /analytics/events/popular
- * @desc    Get the top 5 most registered events
- * @access  Admin Only
- */
-router.get('/events/popular', authMiddleware, adminMiddleware, getPopularEvents);
+router.route("/events/popular")
+  .get(protect, authorize("admin"), getPopularEvents);
 
-/**
- * @route   GET /analytics/users/active
- * @desc    Get the top 5 most active users based on registrations
- * @access  Admin Only
- */
-router.get('/users/active', authMiddleware, adminMiddleware, getActiveUsers);
+router.route("/users/active")
+  .get(protect, authorize("admin"), getActiveUsers);
+
+router.route("/events/:id/stats")
+  .get(protect, authorize("admin", "organizer"), getEventStats);
 
 module.exports = router;
