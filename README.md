@@ -1,3 +1,5 @@
+Project is deployed on Render.com
+
 # **API Documentation**
 https://documenter.getpostman.com/view/37880571/2sAYQanC5C#707f2642-276e-4868-b838-1d73eb20d481
 
